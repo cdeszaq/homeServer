@@ -6,8 +6,26 @@ Notes, tips, tricks, cheat sheets, designs, layouts, tools, plans, etc. for my h
 
 
 
+- Need to have regular scrubs... Weekly for consumer-grade disks
+- Snapshots are like file system versions
+  - http://www.openoid.net/why-sanoids-zfs-replication-matters/
+
+### Cheat Sheets
+
+- https://www.thegeekdiary.com/solaris-zfs-command-line-reference-cheat-sheet/
+- https://blog.programster.org/zfs-cheatsheet
+- http://www.datadisk.co.uk/html_docs/sun/sun_zfs_cs.htm
+- https://cheatography.com/the-iceman-blog/cheat-sheets/zfs-command-line-reference/
+- http://unix-karri.com/zfs-cheat-sheet/
+- https://hamwaves.com/zfs/en/zfs.a4.pdf
+
 ## General File System
 
+
+## Screen
+
+
+## RSync
 
 
 ## Plans
