@@ -48,6 +48,29 @@ Notes, tips, tricks, cheat sheets, designs, layouts, tools, plans, etc. for my h
 
 - Verifying copies across file systems: http://www.openoid.net/verifying-copies/
 
+  ```
+  // File sizes as reported by the file system, not the blocks (data, not disk)
+  root@banshee:/# du -hs --apparent-size /usr/bin ; du -hs --apparent-size /banshee/tmp/bin
+  
+  // Count files
+  root@banshee:/# find /usr/bin | wc -l ; find /banshee/tmp/bin | wc -l
+
+  // Relative paths, generating and comparing checksums for all nested files
+  root@banshee:/banshee/tmp# cd /usr ; find ./bin -type f | sort | xargs md5sum > /tmp/sourcesums.txt
+  root@banshee:/usr# cd /banshee/tmp ; find ./bin -type f | sort | xargs md5sum > /tmp/targetsums.txt
+  root@banshee:/banshee/tmp# diff /tmp/sourcesums.txt /tmp/targetsums.txt
+  root@banshee:/banshee/tmp# 
+  
+  // Find files that are different, likely hardlinks
+  root@banshee:/banshee/tmp# ls -laR /usr/bin | awk '{print $1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11}' > /tmp/sourcels.txt
+  root@banshee:/banshee/tmp# ls -laR /banshee/tmp/bin | awk '{print $1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11}' > /tmp/targetls.txt
+  root@banshee:/banshee/tmp# diff /tmp/sourcels.txt /tmp/targetls.txt | head -n 25
+  
+  // Look for hardlinks to the given file in original vs. copy. (to verify the reason)
+  root@banshee:/banshee/tmp# find /usr/bin -samefile /usr/bin/lockfile-check
+  root@banshee:/banshee/tmp# find /banshee/tmp/bin -samefile /usr/bin/lockfile-check
+  ```
+
 
 ## Plans
 
